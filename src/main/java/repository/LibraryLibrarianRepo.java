@@ -40,12 +40,17 @@ public class LibraryLibrarianRepo implements LibrarianRepo {
 
     @Override
     public void update(Librarian librarian) {
-
+        Librarian librarianToModify = librarians.get(librarians.indexOf(librarian));
+        boolean containsLibrarian = librarians.contains(librarian);
+        if(containsLibrarian) {
+            librarians.remove(librarianToModify);
+            librarians.add(librarian);
+        }
     }
 
     @Override
     public List<Librarian> getAllLibrarian() {
-        return null;
+        return new ArrayList<>(librarians);
     }
 
     @Override

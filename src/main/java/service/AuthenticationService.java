@@ -23,7 +23,7 @@ public class AuthenticationService {
 
     public AuthenticationService() {
         libraryUserRepo = LibraryUserRepo.getInstance();
-        //this.authRepository = new AuthenticationRepository();
+        libraryLibrarianRepo = LibraryLibrarianRepo.getInstance();
 
     }
 

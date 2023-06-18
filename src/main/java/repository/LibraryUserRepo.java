@@ -21,9 +21,7 @@ public class LibraryUserRepo implements UserRepo {
         if (libraryUserRepo == null) {
             libraryUserRepo = new LibraryUserRepo();
         }
-
         return libraryUserRepo;
-
     }
 
     @Override
@@ -41,7 +39,6 @@ public class LibraryUserRepo implements UserRepo {
         return usersList.stream()
                 .filter(user -> user.getUserName().equalsIgnoreCase(name))
                 .findFirst();
-
     }
 
 
