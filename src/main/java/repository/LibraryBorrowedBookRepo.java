@@ -9,8 +9,17 @@ import java.util.Optional;
 public class LibraryBorrowedBookRepo implements BorrowedBookRepo {
     private final List<BorrowedBook> borrowedBooks;
 
-    public LibraryBorrowedBookRepo() {
+    private static LibraryBorrowedBookRepo libraryBorrowedBookRepo;
+
+    private LibraryBorrowedBookRepo() {
         borrowedBooks = new ArrayList<>();
+    }
+
+    public static LibraryBorrowedBookRepo getInstance() {
+        if(libraryBorrowedBookRepo == null) {
+            libraryBorrowedBookRepo = new LibraryBorrowedBookRepo();
+        }
+        return libraryBorrowedBookRepo;
     }
 
     @Override

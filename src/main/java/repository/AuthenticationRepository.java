@@ -8,18 +8,22 @@ import java.util.List;
 import java.util.Optional;
 
 public class AuthenticationRepository {
-
     private final List<User> usersList;
-//    private List<Librarian> librarianList;
+    private final List<Librarian> librarianList;
 
+    private static AuthenticationRepository authenticationRepository;
 
-
-
-    public AuthenticationRepository() {
+    private AuthenticationRepository() {
         usersList = new ArrayList<>();
-//        librarianList = new ArrayList<>();
+        librarianList = new ArrayList<>();
     }
 
+    public static AuthenticationRepository getInstance() {
+        if (authenticationRepository == null) {
+            return  authenticationRepository  = new AuthenticationRepository();
+        }
+        return authenticationRepository;
+    }
     // Logic to fetch user from a database
     // Return the User object if found, otherwise empty optional
     public Optional<User> getUser(String username) {
@@ -30,5 +34,12 @@ public class AuthenticationRepository {
         User newUser = new User(email, username, password);
 
         return usersList.add(newUser);
+    }
+
+    public Optional<Librarian> getLibrarian(String userName){
+        return librarianList.stream()
+                .filter(librarian -> librarian.getUserName().equalsIgnoreCase(userName))
+                .findFirst();
+        
     }
 }

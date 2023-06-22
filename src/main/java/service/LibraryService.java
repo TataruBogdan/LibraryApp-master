@@ -5,34 +5,33 @@ import repository.LibraryBorrowedBookRepo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 
 // implement singleton pattern because we need only one instance of class
-public class BorrowedBookService implements Subject {
+public class LibraryService implements Subject {
 
 
-    private LibraryBorrowedBookRepo libraryBorrowedBookRepo;
+    private LibraryBorrowedBookRepo libraryBorrowedBookRepo ;
+
+    //use Librarian service in place of LibraryLibrarianRepo
+    private LibrarianService librarianService = new LibrarianService();
+
+    // use User service in place of
+    private UserService userService = new UserService();
 
     //change this to static
-    BookService bookService = BookService.getInstance();
+    private BookService bookService = new BookService();
 
     private List<Observer> observerList;
 
-    private static BorrowedBookService borrowedBookService;
+    private static LibraryService borrowedBookService;
 
-    private BorrowedBookService() {
-        this.libraryBorrowedBookRepo = new LibraryBorrowedBookRepo();
-        //this.bookService = new BookService();
+    public LibraryService() {
+        this.libraryBorrowedBookRepo = LibraryBorrowedBookRepo.getInstance() ;
         this.observerList = new ArrayList<>();
-    }
-
-    public static BorrowedBookService getInstance() {
-        if (borrowedBookService == null) {
-            borrowedBookService = new BorrowedBookService();
-        }
-        return borrowedBookService;
     }
 
     // we checked that the book exists -> weed to borrow the book to the USER
@@ -110,6 +109,11 @@ public class BorrowedBookService implements Subject {
     @Override
     public void notifyLibrarians(String notification) {
         observerList.forEach(observer -> observer.notify(notification));
+    }
+
+    public boolean addBook(String book, String author, String ISBN, String genre, Date date) {
+        Optional<Book> bookAdded = bookService.addBook(book, author, ISBN, genre, date);
+        return bookAdded.isPresent();
     }
 
 //    public BorrowedBook returnBorrowedBook(long idBorrowedBook) {

@@ -1,29 +1,30 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Librarian implements Observer {
 
-    private String name;
+    private String userName;
     private String ID;
     private String password;
 
     private List<String> notifications;
 
-    public Librarian(String name, String ID,String password) {
-        if (!name.isEmpty()&&!ID.isEmpty()&&!password.isEmpty()){
-           this.name = name;
+    // check also if Librarian is null ?
+    public Librarian(String userName, String ID, String password) {
+
+        if (!userName.isEmpty() && !userName.isBlank() && !ID.isEmpty() && !ID.isBlank() && !password.isEmpty() && !password.isBlank()){
+           this.userName = userName;
                    this.ID = ID;
                    this.password = password;
         }
         this.notifications = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
     public String getID() {
@@ -48,18 +49,18 @@ public class Librarian implements Observer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Librarian librarian = (Librarian) o;
-        return Objects.equals(name, librarian.name) && Objects.equals(ID, librarian.ID);
+        return Objects.equals(userName, librarian.userName) && Objects.equals(ID, librarian.ID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, ID);
+        return Objects.hash(userName, ID);
     }
 
     @Override
     public String toString() {
         return "Librarian{" +
-                "name='" + name + '\'' +
+                "name='" + userName + '\'' +
                 ", ID='" + ID + '\'' +
                 '}';
     }

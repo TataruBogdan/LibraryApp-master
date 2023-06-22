@@ -21,12 +21,11 @@ public class Book {
         setAuthor(author);
         setISBN(ISBN);
         setGenre(genre);
+        this.isAvailable = true; // create a book -> isAvailable
         this.releaseDate = releaseDate;
 
     }
 
-    //TODO
-    // ID made from ISBN + Specimen Book Number - Check if ok ?
     private void setID() {
         this.ID = nextID++;
     }
@@ -43,6 +42,7 @@ public class Book {
         }
     }
 
+    // book already created -> check if ISBN match first
     public void setISBN(String ISBN) {
         if (ISBN.matches("^[0-9]{3}-[0-9]-[0-9]{2}-[0-9]{6}-[0-9]$")) {
             this.ISBN = ISBN;

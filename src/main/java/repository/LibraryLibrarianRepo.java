@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public class LibraryLibrarianRepo implements LibrarianRepo {
 
-
     private List<Librarian> librarians;
 
     private static LibraryLibrarianRepo libraryLibrarianRepo;
@@ -26,18 +25,19 @@ public class LibraryLibrarianRepo implements LibrarianRepo {
 
 
     @Override
-    public void addLibrarian(Librarian librarian) {
-        librarians.add(librarian);
+    public boolean addLibrarian(Librarian librarian) {
+        return librarians.add(librarian);
     }
 
     @Override
-    public Optional<Librarian> getUser(String id) {
+    public Optional<Librarian> getLIbrarian(String id) {
 
         return librarians.stream()
                 .filter(librarian -> librarian.getID().equalsIgnoreCase(id))
                 .findFirst();
     }
 
+    //do we need update librarian?
     @Override
     public void update(Librarian librarian) {
         Librarian librarianToModify = librarians.get(librarians.indexOf(librarian));
@@ -54,7 +54,7 @@ public class LibraryLibrarianRepo implements LibrarianRepo {
     }
 
     @Override
-    public void removeLibrarian(Librarian librarian) {
-        librarians.remove(librarian);
+    public boolean removeLibrarian(Librarian librarian) {
+        return librarians.remove(librarian);
     }
 }

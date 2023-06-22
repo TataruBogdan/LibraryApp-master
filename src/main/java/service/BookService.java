@@ -3,30 +3,27 @@ package service;
 import model.Book;
 import repository.LibraryBookRepo;
 
+import java.util.Date;
 import java.util.Optional;
 
 public class BookService {
 
-    private LibraryBookRepo bookRepo;
-
-    private static BookService bookService;
-
-    private BookService() {
-        bookRepo = new LibraryBookRepo();
-    }
-
-
-    public static BookService getInstance(){
-        if (bookService == null){
-            bookService = new BookService();
-        }
-        return bookService;
-    }
+    private LibraryBookRepo libraryBookRepo = LibraryBookRepo.getInstance();
 
 
 // Todo
 //  Check in main for the optional.isPresent
     public Optional<Book> checkBook(String bookName) {
-       return bookRepo.getBook(bookName);
+       return libraryBookRepo.getBook(bookName);
+    }
+
+    public Optional<Book> addBook(String bookName, String author, String ISBN, String genre, Date date) {
+        Book book = new Book(bookName, author, ISBN, genre, date);
+        boolean addedBook = libraryBookRepo.addBook(book);
+        if(addedBook) {
+            return Optional.of(book);
+        } else {
+            return Optional.empty();
+        }
     }
 }

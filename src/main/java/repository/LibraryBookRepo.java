@@ -9,7 +9,21 @@ import java.util.Optional;
 public class LibraryBookRepo implements BookRepo {
 
 
-    private List<Book> books = new ArrayList<>();
+    private List<Book> books;
+
+    private static LibraryBookRepo libraryBookRepo;
+
+    private LibraryBookRepo() {
+        books = new ArrayList<>();
+    }
+
+
+    public static LibraryBookRepo getInstance() {
+        if (libraryBookRepo == null) {
+            return libraryBookRepo = new LibraryBookRepo();
+        }
+        return libraryBookRepo;
+    }
 
 
     @Override
@@ -19,8 +33,8 @@ public class LibraryBookRepo implements BookRepo {
                 .findFirst();
     }
     @Override
-    public void addBook(Book book) {
-        books.add(book);
+    public boolean addBook(Book book) {
+        return books.add(book);
     }
 
     @Override
@@ -28,6 +42,7 @@ public class LibraryBookRepo implements BookRepo {
         return books.stream().filter(book -> book.getName().equalsIgnoreCase(name)).findFirst();
     }
 
+    // TODO
     @Override
     public void updateBook(Book book) {
 

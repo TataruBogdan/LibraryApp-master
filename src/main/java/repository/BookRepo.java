@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface BookRepo {
     Optional<Book> getBook(String bookName);
-    void addBook(Book book);
+    boolean addBook(Book book);
     Optional<Book> searchBook(String name);
     void updateBook(Book book);
     void removeBook(long id);
