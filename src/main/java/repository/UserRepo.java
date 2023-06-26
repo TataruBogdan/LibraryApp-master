@@ -8,9 +8,9 @@ import java.util.Optional;
 public interface UserRepo {
 
     boolean addUser(User user);
-    Optional<User> getUser(int id);
+    Optional<User> getUserId(long id);
 
-    Optional<User> getUser(String name);
+    Optional<User> getUserName(String name);
     boolean removeUser(int id);
     List<User> getAllUsers();
 

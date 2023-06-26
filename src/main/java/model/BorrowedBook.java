@@ -2,7 +2,6 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,7 +33,7 @@ public class BorrowedBook implements Subject {
 
     //TODO
     // setBook must be private ? cannot change book ? only if needed ?
-    private void setBook(Book book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 

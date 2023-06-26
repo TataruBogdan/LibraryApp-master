@@ -5,22 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a872cd2-2092-4ad5-ae5c-fffb7110f00c" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Librarian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/BorrowedBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/BorrowedBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repository/AuthenticationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/AuthenticationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/BookRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/BookRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LibrarianRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/LibrarianRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LibraryBookRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/LibraryBookRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LibraryBorrowedBookRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/LibraryBorrowedBookRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LibraryLibrarianRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/LibraryLibrarianRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LogInAuthenticationRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/AuthenticationRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LibraryUserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/LibraryUserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/UserRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/AuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/BorrowedBookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/LibraryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/LibrarianService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/LibrarianService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/LibraryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/LibraryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
     </list>
     <list id="080a6dbe-3306-4d67-9ca1-5a5229ba48f8" name="Changes by bogda" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +110,20 @@
       <option name="presentableId" value="Default" />
       <updated>1686750951720</updated>
     </task>
+    <task id="LOCAL-00001" summary="changes">
+      <option name="closed" value="true" />
+      <created>1687467067127</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687467067127</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -122,36 +131,16 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java</url>
           <line>51</line>
-          <option name="timeStamp" value="2" />
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java</url>
-          <line>193</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/service/BookService.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/service/BookService.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="9" />
+          <line>206</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/service/LibraryService.java</url>
-          <line>37</line>
+          <line>53</line>
           <properties class="service.LibraryService" method="borrowBook">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -166,6 +155,33 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/model/User.java</url>
+          <line>78</line>
+          <properties class="model.User" method="setBB">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java</url>
+          <line>277</line>
+          <properties class="controller.LibraryApplication" method="returnBorrowedBook">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/service/AuthenticationService.java</url>
+          <line>14</line>
+          <properties class="service.AuthenticationService" method="authenticateUser">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

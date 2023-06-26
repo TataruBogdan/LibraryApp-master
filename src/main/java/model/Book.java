@@ -23,7 +23,6 @@ public class Book {
         setGenre(genre);
         this.isAvailable = true; // create a book -> isAvailable
         this.releaseDate = releaseDate;
-
     }
 
     private void setID() {

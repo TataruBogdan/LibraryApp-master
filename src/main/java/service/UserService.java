@@ -10,18 +10,33 @@ public class UserService {
 
     private LibraryUserRepo libraryUserRepo = LibraryUserRepo.getInstance();
 
+    public boolean addUser(String userName, String password, String email) {
 
-    // add user must return something?
-    public boolean addUser(User user) {
-        return libraryUserRepo.addUser(user);
+        //TODO
+        Optional<User> userOptional = libraryUserRepo.getUserEmail(email);
+        if (userOptional.isEmpty()) {
+            User user = new User(email, userName, password);
+            return libraryUserRepo.addUser(user);
+        }
+        return false;
     }
 
-    public Optional<User> getUser(int id) {
-        return libraryUserRepo.getUser(id);
+    public boolean checkUserEmail(String email) {
+        Optional<User> userEmail = libraryUserRepo.getUserEmail(email);
+        return userEmail.isPresent();
+    }
+
+    public boolean checkUserName(String userName) {
+        Optional<User> foundUserName = libraryUserRepo.getUserName(userName);
+        return foundUserName.isPresent();
+    }
+
+    public Optional<User> getUser(long id) {
+        return libraryUserRepo.getUserId(id);
     }
 
     public Optional<User> getUser(String name) {
-        return  libraryUserRepo.getUser(name);
+        return  libraryUserRepo.getUserName(name);
     }
 
     public boolean removeUser(int id) {

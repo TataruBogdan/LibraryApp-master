@@ -30,17 +30,21 @@ public class LibraryUserRepo implements UserRepo {
     }
 
     @Override
-    public Optional<User> getUser(int id) {
+    public Optional<User> getUserId(long id) {
         return usersList.stream().filter(user -> user.getID() == id).findFirst();
     }
 
-    @Override
-    public Optional<User> getUser(String name) {
+    public Optional<User> getUserName(String name) {
         return usersList.stream()
                 .filter(user -> user.getUserName().equalsIgnoreCase(name))
                 .findFirst();
     }
 
+    public Optional<User> getUserEmail(String email) {
+        return usersList.stream()
+                .filter(user -> user.getEmail().equalsIgnoreCase(email))
+                .findAny();
+    }
 
     @Override
     public boolean removeUser(int id) {

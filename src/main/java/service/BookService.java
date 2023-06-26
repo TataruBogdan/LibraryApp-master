@@ -22,8 +22,7 @@ public class BookService {
         boolean addedBook = libraryBookRepo.addBook(book);
         if(addedBook) {
             return Optional.of(book);
-        } else {
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 }

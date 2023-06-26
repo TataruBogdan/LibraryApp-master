@@ -6,11 +6,12 @@ import java.util.Objects;
 
 public class User {
 
-    private int id = 0;
+    private static long nextID = 1;
+    private long id = 1;
     private String email;
     private String userName;
     private String password;
-    private final List<BorrowedBook> userListOfBorrowedBooks;
+    private final List<Book> userListOfBorrowedBooks;
 
 
     public User(String email, String userName, String password) {
@@ -18,10 +19,10 @@ public class User {
         setUserName(userName);
         setPassword(password);
         this.userListOfBorrowedBooks = new ArrayList<>();
-        id++;
+        this.id = nextID++;
     }
 
-    public int getID() {
+    public long getID() {
         return id;
     }
 
@@ -67,12 +68,16 @@ public class User {
         return password;
     }
 
-    public List<BorrowedBook> getUserListOfBorrowedBooks() {
+    public List<Book> getUserListOfBorrowedBooks() {
         return new ArrayList<>(userListOfBorrowedBooks);
     }
 
-    public void deleteBook(BorrowedBook book) {
-        userListOfBorrowedBooks.remove(book);
+    public boolean deleteBook(Book book) {
+        return userListOfBorrowedBooks.remove(book);
+    }
+
+    public boolean setBB(Book book) {
+         return userListOfBorrowedBooks.add(book);
     }
 
     @Override

@@ -27,13 +27,16 @@ public class AuthenticationRepository {
     // Logic to fetch user from a database
     // Return the User object if found, otherwise empty optional
     public Optional<User> getUser(String username) {
-        return usersList.stream().filter(user -> user.getUserName().equalsIgnoreCase(username)).findFirst();
+        return usersList.stream()
+                .filter(user -> user.getUserName().equalsIgnoreCase(username))
+                .findFirst();
     }
 
-    public boolean registerUser(String email, String username, String password) {
+    public Optional<User> registerUser(String email, String username, String password) {
         User newUser = new User(email, username, password);
+        usersList.add(newUser);
+        return Optional.of(newUser);
 
-        return usersList.add(newUser);
     }
 
     public Optional<Librarian> getLibrarian(String userName){
