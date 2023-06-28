@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a872cd2-2092-4ad5-ae5c-fffb7110f00c" name="Changes" comment="changes 26/06">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="8a872cd2-2092-4ad5-ae5c-fffb7110f00c" name="Changes" comment="changes 28/06">
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LibraryBookRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/BookRepoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LibraryBorrowedBookRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/BorrowedBookRepoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LibraryLibrarianRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/LibrarianRepoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/LibraryUserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/UserRepoImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/AuthenticationRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/AuthenticationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/repository/BookRepoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/BookRepoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/AuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/LibrarianService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/LibrarianService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/LibraryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/BorrowedBookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/BorrowedBookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/BorrowedBookService.java" afterDir="false" />
     </list>
     <list id="080a6dbe-3306-4d67-9ca1-5a5229ba48f8" name="Changes by bogda" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -126,13 +122,22 @@
       <option name="project" value="LOCAL" />
       <updated>1687762785585</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="changes 28/06">
+      <option name="closed" value="true" />
+      <created>1687958158417</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1687958158417</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changes" />
     <MESSAGE value="changes 26/06" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes 26/06" />
+    <MESSAGE value="changes 28/06" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes 28/06" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -157,7 +162,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java</url>
-          <line>226</line>
+          <line>216</line>
           <properties class="controller.LibraryApplication" method="loginAsAdmin">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -175,7 +180,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/service/BorrowedBookService.java</url>
-          <line>108</line>
+          <line>88</line>
           <properties class="service.BorrowedBookService" method="returnBorrowedBook">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -184,7 +189,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/service/BorrowedBookService.java</url>
-          <line>52</line>
+          <line>36</line>
           <properties class="service.BorrowedBookService" method="borrowBook">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -193,13 +198,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java</url>
-          <line>122</line>
+          <line>112</line>
           <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/LibraryApplication.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

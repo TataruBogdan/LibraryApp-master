@@ -2,7 +2,6 @@ package controller;
 
 import model.Book;
 import model.BorrowedBook;
-import model.User;
 import service.AuthenticationService;
 import service.BookService;
 import service.BorrowedBookService;
@@ -16,7 +15,6 @@ import java.util.Scanner;
 
 public class LibraryApplication {
 
-    //this is our instance of BBS
     static BorrowedBookService borrowedBookService = new BorrowedBookService();
     static BookService bookService = new BookService();
     static AuthenticationService authenticationService = new AuthenticationService();
@@ -61,15 +59,7 @@ public class LibraryApplication {
                     System.out.println("Enter book release date");
                     String releaseDate = scanner.nextLine();
 
-                    SimpleDateFormat format = new SimpleDateFormat("MMM-yyyy");
-
-                    try {
-                        date = format.parse(releaseDate);
-                    } catch (ParseException e) {
-                        System.out.println("Error. Cannot add book. Date not correct ! \n" +
-                                                   "example Date : jan-2015 ");
-                    }
-                    Optional<Book> addedBook = bookService.addBook(bookName, author, ISBN, genre, date);
+                    Optional<Book> addedBook = bookService.addBook(bookName, author, ISBN, genre, releaseDate);
                     if (addedBook.isPresent()) {
                         System.out.println("Book was successfully added");
                     } else {
@@ -126,7 +116,7 @@ public class LibraryApplication {
                         } else {
                             System.out.println("Cannot find book in your list of borrowed books");
                         }
-                    }else {
+                    } else {
                         System.out.println("You must be longedIn");
                     }
                 }
@@ -251,11 +241,5 @@ public class LibraryApplication {
             System.out.println("Account not found! Please try again.");
         }
     }
-
-    /*
-    TODO
-      * We need to make the return book method.
-      * The method below can be used by the librarian to remove the borrowed book from the user list of borrowed books when he wants to return a book.
-    */
 
 }

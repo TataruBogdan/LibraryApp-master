@@ -56,7 +56,7 @@ public class User {
         return userName;
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         if (!password.trim().isEmpty()) {
             this.password = password;
         } else {

@@ -3,6 +3,8 @@ package service;
 import model.Book;
 import repository.BookRepoImpl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -17,9 +19,20 @@ public class BookService {
        return bookRepoImpl.getBook(bookName);
     }
 
-    public Optional<Book> addBook(String bookName, String author, String ISBN, String genre, Date date) {
-        Book book = new Book(bookName, author, ISBN, genre, date);
-        boolean addedBook = bookRepoImpl.addBook(book);
+    public Optional<Book> addBook(String bookName, String author, String ISBN, String genre, String date) {
+
+        SimpleDateFormat format = new SimpleDateFormat("MMM-yyyy");
+        Book book = null;
+        Date checkDate;
+        boolean addedBook = false;
+        try {
+            checkDate = format.parse(date);
+            book = new Book(bookName, author, ISBN, genre, checkDate);
+            addedBook = bookRepoImpl.addBook(book);
+        } catch (ParseException e) {
+            System.out.println("Date not correct ! \n" +
+                                       "example Date : jan-2015 ");
+        }
         if(addedBook) {
             return Optional.of(book);
         }

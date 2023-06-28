@@ -6,8 +6,6 @@ import java.util.Optional;
 
 public class AuthenticationService {
 
-    //private static AuthenticationRepository authenticationRepository = AuthenticationRepository.getInstance();
-
     private UserService userService = new UserService();
 
     public boolean authenticateUser(String username, String password) {

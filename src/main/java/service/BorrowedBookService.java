@@ -26,7 +26,6 @@ public class BorrowedBookService implements Subject {
 
     private List<Observer> observerList;
 
-    //private static LibraryService borrowedBookService;
 
     public BorrowedBookService() {
         this.borrowedBookRepoImpl = BorrowedBookRepoImpl.getInstance();

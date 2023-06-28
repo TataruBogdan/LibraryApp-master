@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public class BookRepoImpl implements BookRepo {
 
-
     private List<Book> books;
 
     private static BookRepoImpl bookRepoImpl;
