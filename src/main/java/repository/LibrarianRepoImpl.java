@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class LibraryLibrarianRepo implements LibrarianRepo {
+public class LibrarianRepoImpl implements LibrarianRepo {
 
     private List<Librarian> librarians;
 
-    private static LibraryLibrarianRepo libraryLibrarianRepo;
+    private static LibrarianRepoImpl librarianRepoImpl;
 
-    private LibraryLibrarianRepo() {
+    private LibrarianRepoImpl() {
         this.librarians = new ArrayList<>();
     }
 
-    public static LibraryLibrarianRepo getInstance() {
-        if(libraryLibrarianRepo == null) {
-            libraryLibrarianRepo = new LibraryLibrarianRepo();
+    public static LibrarianRepoImpl getInstance() {
+        if(librarianRepoImpl == null) {
+            librarianRepoImpl = new LibrarianRepoImpl();
         }
-        return libraryLibrarianRepo;
+        return librarianRepoImpl;
     }
 
 

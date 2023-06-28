@@ -34,6 +34,7 @@ public class User {
         } else {
             System.out.println("INVALID EMAIL!");
             this.email = userName + "@email.com";
+            System.out.println("Your email is " + this.email);
         }
     }
 

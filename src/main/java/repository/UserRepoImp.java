@@ -6,22 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class LibraryUserRepo implements UserRepo {
+public class UserRepoImp implements UserRepo {
 
     private final List<User> usersList;
 
-    private static LibraryUserRepo libraryUserRepo;
+    private static UserRepoImp userRepoImp;
 
-    private LibraryUserRepo() {
+    private UserRepoImp() {
         usersList = new ArrayList<>();
 
     }
 
-    public static LibraryUserRepo getInstance() {
-        if (libraryUserRepo == null) {
-            libraryUserRepo = new LibraryUserRepo();
+    public static UserRepoImp getInstance() {
+        if (userRepoImp == null) {
+            userRepoImp = new UserRepoImp();
         }
-        return libraryUserRepo;
+        return userRepoImp;
     }
 
     @Override

@@ -1,9 +1,11 @@
 package controller;
 
+import model.Book;
 import model.BorrowedBook;
 import model.User;
 import service.AuthenticationService;
-import service.LibraryService;
+import service.BookService;
+import service.BorrowedBookService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,9 +17,11 @@ import java.util.Scanner;
 public class LibraryApplication {
 
     //this is our instance of BBS
-    static LibraryService libraryService = new LibraryService();
+    static BorrowedBookService borrowedBookService = new BorrowedBookService();
+    static BookService bookService = new BookService();
     static AuthenticationService authenticationService = new AuthenticationService();
 
+    static Date date;
     static boolean loginUser = false;
     static boolean loginLibrarian = false;
 
@@ -31,65 +35,111 @@ public class LibraryApplication {
 
         while (order) {
             switch (choice) {
-                case 1: loginUser = loginAsUser();
-                break;
-                case 2: loginAsAdmin();
-                break;
-                case 3:
-                    boolean addedBook = addBook();
-                    if (addedBook) {
+                case 1 -> loginUser = loginAsUser();
+                case 2 -> loginAsAdmin();
+                case 3 -> {
+                    System.out.println("Enter book name");
+                    String bookName = scanner.nextLine();
+                    System.out.println("Enter book author");
+                    String author = scanner.nextLine();
+                    System.out.println("Enter book ISBN");
+                    String ISBN = scanner.nextLine();
+                    if (!ISBN.matches("^[0-9]{3}-[0-9]-[0-9]{2}-[0-9]{6}-[0-9]$")) {
+                        System.out.println("ISBN not correct. Please insert gain");
+                        while (true) {
+                            ISBN = scanner.nextLine();
+                            if (ISBN.matches("^[0-9]{3}-[0-9]-[0-9]{2}-[0-9]{6}-[0-9]$")) {
+                                break;
+                            } else {
+                                System.out.println("ISBN not correct. Please insert again");
+                            }
+                        }
+                    }
+
+                    System.out.println("Enter book genre");
+                    String genre = scanner.nextLine();
+                    System.out.println("Enter book release date");
+                    String releaseDate = scanner.nextLine();
+
+                    SimpleDateFormat format = new SimpleDateFormat("MMM-yyyy");
+
+                    try {
+                        date = format.parse(releaseDate);
+                    } catch (ParseException e) {
+                        System.out.println("Error. Cannot add book. Date not correct ! \n" +
+                                                   "example Date : jan-2015 ");
+                    }
+                    Optional<Book> addedBook = bookService.addBook(bookName, author, ISBN, genre, date);
+                    if (addedBook.isPresent()) {
                         System.out.println("Book was successfully added");
                     } else {
                         System.out.println("Book cannot be added");
                     }
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     if (loginUser) {
-                        scanner.nextLine();
                         System.out.println("Search a book ");
                         String searchBook = scanner.nextLine();
-                        if (bookExist(searchBook)){
-                            boolean bookBorrowed = borrowBook(1L, searchBook);
-                            if (bookBorrowed) {
+                        System.out.println("Please enter your id");
+                        long userId = scanner.nextLong();
+                        scanner.nextLine();
+                        boolean bookIsPresent = bookService.checkBook(searchBook).isPresent();
+                        if (bookIsPresent) {
+                            Optional<BorrowedBook> bookBorrowed = borrowedBookService.borrowBook(userId, searchBook);
+                            if (bookBorrowed.isPresent()) {
                                 System.out.println("Book was successfully borrowed");
+                            } else {
+                                System.out.println("Book is not available");
                             }
                         } else {
-                            System.out.println("Book doesn't exists");
+                            System.out.println("Book doesn't exists ");
                         }
                     } else {
                         System.out.println("You must login first");
                     }
-                    break;
-                case 5:
+                }
+                case 5 -> {
                     if (loginUser) {
-                        scanner.nextLine();
                         System.out.println("Please insert your user number");
                         long userId = scanner.nextLong();
                         System.out.println("Please insert book id");
                         long userIdBookLog = scanner.nextLong();
-
-                        renewBook(userId, userIdBookLog);
+                        boolean renewBorrowedBook = borrowedBookService.renewBorrowedBook(userId, userIdBookLog);
+                        if (renewBorrowedBook) {
+                            System.out.println("Success ... Book renewed with 2 weeks more");
+                        } else {
+                            System.out.println("Cannot renew due date. Please contact librarian");
+                        }
+                    } else {
+                        System.out.println("You must be longedIn");
                     }
-                    break;
-                case 6:
+                }
+                case 6 -> {
                     if (loginUser) {
-                        scanner.nextLine();
                         System.out.println("Please insert your user number");
                         long userId = scanner.nextLong();
                         System.out.println("Please insert book id");
                         long bookId = scanner.nextLong();
-                        returnBorrowedBook(userId, bookId);
+                        boolean returnedBorrowedBook = borrowedBookService.returnBorrowedBook(userId, bookId);
+                        if (returnedBorrowedBook) {
+                            System.out.println("Book successfully returned from your list");
+                        } else {
+                            System.out.println("Cannot find book in your list of borrowed books");
+                        }
+                    }else {
+                        System.out.println("You must be longedIn");
                     }
-                    break;
-                default:
+                }
+                default -> {
                     System.out.println(" Exiting...");
                     order = false;
-                    break;
+                }
             }
             if (order) {
                 menu();
                 System.out.println("Select an option");
                 choice = scanner.nextInt();
+                scanner.nextLine();
             }
         }
     }
@@ -161,9 +211,8 @@ public class LibraryApplication {
         if (email.contains("@") && email.contains(".")
                 && email.indexOf("@") == email.lastIndexOf("@")
                 && email.lastIndexOf("@") < email.lastIndexOf(".")) {
-            Optional<User> user = authenticationService.signUpUser(email, userName, password);
-            if (user.isPresent()) {
-                loginUser = true;
+            boolean user = authenticationService.signUpUser(email, userName, password);
+            if (user) {
                 System.out.println("User successful signUp");
                 return true;
             }
@@ -203,85 +252,10 @@ public class LibraryApplication {
         }
     }
 
-    public static boolean borrowBook(long user, String bookName) {
-        Optional<BorrowedBook> borrowBook = libraryService.borrowBook(user, bookName);
-
-        if (borrowBook.isPresent()) {
-            System.out.println(borrowBook.get().getBook().getName() + " " + borrowBook.get().getBook().getAuthor() + " " + "borrowed to" + " " + borrowBook.get().getUser().getUserName() );
-            return true;
-        } else {
-            System.out.println("Book " + bookName + " doesn't exists");
-            return false;
-        }
-    }
-
-    public static boolean addBook() {
-        Scanner scanner = new Scanner(System.in);
-        Date date;
-        System.out.println("Enter book name");
-        String bookName = scanner.nextLine();
-        System.out.println("Enter book author");
-        String author = scanner.nextLine();
-        System.out.println("Enter book ISBN");
-        String ISBN = scanner.nextLine();
-        if (!ISBN.matches("^[0-9]{3}-[0-9]-[0-9]{2}-[0-9]{6}-[0-9]$")) {
-            System.out.println("ISBN not correct. Please insert gain");
-            while (true) {
-                ISBN = scanner.nextLine();
-                if (ISBN.matches("^[0-9]{3}-[0-9]-[0-9]{2}-[0-9]{6}-[0-9]$")) {
-                    break;
-                } else {
-                    System.out.println("ISBN not correct. Please insert again");
-                }
-            }
-        }
-
-        System.out.println("Enter book genre");
-        String genre = scanner.nextLine();
-        System.out.println("Enter book release date");
-        String releaseDate = scanner.nextLine();
-
-        SimpleDateFormat format = new SimpleDateFormat("MMM-yyyy");
-
-        try {
-            date = format.parse(releaseDate);
-        } catch (ParseException e) {
-            System.out.println("Error. Cannot add book. Date not correct ! \n" +
-                                       "example Date : jan-2015 ");
-            return false;
-        }
-
-        return libraryService.addBook(bookName, author, ISBN, genre, date);
-    }
-
-
-    public static boolean bookExist(String name) {
-        return libraryService.bookExist(name);
-
-    }
-
-    public static void renewBook(long user, Long bookId) {
-        boolean isBookRenewed = libraryService.renewBorrowedBook(user, bookId);
-        if (isBookRenewed) {
-            System.out.println("Success ... Book renewed with 2 weeks more");
-        } else {
-            System.out.println("Cannot find book");
-        }
-    }
-
     /*
     TODO
       * We need to make the return book method.
       * The method below can be used by the librarian to remove the borrowed book from the user list of borrowed books when he wants to return a book.
     */
 
-    public static void returnBorrowedBook(long user, Long bookID) {
-        boolean bookToBeRemoved = libraryService.returnBorrowedBook(user, bookID);
-
-        if (bookToBeRemoved) {
-            System.out.println("Book successfully removed from your list");
-        } else {
-            System.out.println("Cannot find book in your list of borrowed books");
-        }
-    }
 }

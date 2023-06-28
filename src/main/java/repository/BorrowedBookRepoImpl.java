@@ -6,20 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class LibraryBorrowedBookRepo implements BorrowedBookRepo {
+public class BorrowedBookRepoImpl implements BorrowedBookRepo {
     private final List<BorrowedBook> borrowedBooks;
 
-    private static LibraryBorrowedBookRepo libraryBorrowedBookRepo;
+    private static BorrowedBookRepoImpl borrowedBookRepoImpl;
 
-    private LibraryBorrowedBookRepo() {
+    private BorrowedBookRepoImpl() {
         borrowedBooks = new ArrayList<>();
     }
 
-    public static LibraryBorrowedBookRepo getInstance() {
-        if(libraryBorrowedBookRepo == null) {
-            libraryBorrowedBookRepo = new LibraryBorrowedBookRepo();
+    public static BorrowedBookRepoImpl getInstance() {
+        if(borrowedBookRepoImpl == null) {
+            borrowedBookRepoImpl = new BorrowedBookRepoImpl();
         }
-        return libraryBorrowedBookRepo;
+        return borrowedBookRepoImpl;
     }
 
     @Override
@@ -40,6 +40,7 @@ public class LibraryBorrowedBookRepo implements BorrowedBookRepo {
                 .findFirst();
         if (foundBook.isPresent()) {
             borrowedBooks.remove(foundBook.get());
+
             return true;
         } else {
             return false;

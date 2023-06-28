@@ -6,23 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class LibraryBookRepo implements BookRepo {
+public class BookRepoImpl implements BookRepo {
 
 
     private List<Book> books;
 
-    private static LibraryBookRepo libraryBookRepo;
+    private static BookRepoImpl bookRepoImpl;
 
-    private LibraryBookRepo() {
+    private BookRepoImpl() {
         books = new ArrayList<>();
     }
 
 
-    public static LibraryBookRepo getInstance() {
-        if (libraryBookRepo == null) {
-            return libraryBookRepo = new LibraryBookRepo();
+    public static BookRepoImpl getInstance() {
+        if (bookRepoImpl == null) {
+            return bookRepoImpl = new BookRepoImpl();
         }
-        return libraryBookRepo;
+        return bookRepoImpl;
     }
 
 

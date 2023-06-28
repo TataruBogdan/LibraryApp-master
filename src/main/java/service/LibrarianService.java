@@ -3,29 +3,29 @@ package service;
 import model.BorrowedBook;
 import model.Librarian;
 import model.User;
-import repository.LibraryLibrarianRepo;
+import repository.LibrarianRepoImpl;
 
 import java.util.Optional;
 
 public class LibrarianService {
-    private LibraryLibrarianRepo libraryLibrarianRepo = LibraryLibrarianRepo.getInstance();
+    private LibrarianRepoImpl librarianRepoImpl = LibrarianRepoImpl.getInstance();
 
     public boolean addLibrarian(String userName, String id, String password) {
 
         Librarian librarian = new Librarian(userName, id, password);
-        return libraryLibrarianRepo.addLibrarian(librarian);
+        return librarianRepoImpl.addLibrarian(librarian);
 
     }
 
     public Optional<Librarian> getLibrarian(String id) {
 
-        return libraryLibrarianRepo.getLIbrarian(id);
+        return librarianRepoImpl.getLIbrarian(id);
     }
 
     public boolean removeLibrarian(String librarianID) {
-        Optional<Librarian> foundLibrarian = libraryLibrarianRepo.getLIbrarian(librarianID);
+        Optional<Librarian> foundLibrarian = librarianRepoImpl.getLIbrarian(librarianID);
         if (foundLibrarian.isPresent()) {
-            libraryLibrarianRepo.removeLibrarian(foundLibrarian.get());
+            librarianRepoImpl.removeLibrarian(foundLibrarian.get());
             return true;
         }else {
             return false;
